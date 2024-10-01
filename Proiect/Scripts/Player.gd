@@ -5,7 +5,7 @@ const SPEED = 350.0
 const JUMP_VELOCITY = -700.0
 const THINK_TIME = 0.1
 const JUMP_THINK_TIME = 0.05
-const COYOTE_TIME = 100
+const COYOTE_TIME = 0.00001
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = 1600
