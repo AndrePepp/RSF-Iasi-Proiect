@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddkyjaoyx5s75"]
+[gd_scene load_steps=6 format=3 uid="uid://ddkyjaoyx5s75"]
 
-[ext_resource type="Texture2D" uid="uid://b0ofr5w2y44km" path="res://icon.svg" id="1_wrere"]
-[ext_resource type="Script" path="res://Scenes/Player.gd" id="1_xl6f7"]
+[ext_resource type="Texture2D" uid="uid://b0ofr5w2y44km" path="res://Assets/icon.svg" id="1_wrere"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_xl6f7"]
+[ext_resource type="PackedScene" uid="uid://bisf8c07pju6v" path="res://Scenes/e_thingy.tscn" id="3_bnehe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2xnt2"]
 radius = 49.0918
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_08a5j"]
+radius = 58.4209
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_xl6f7")
@@ -21,3 +25,12 @@ shape = SubResource("CircleShape2D_2xnt2")
 wait_time = 0.3
 
 [node name="JumpTimer" type="Timer" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-1, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_08a5j")
+
+[node name="Node2D" parent="." instance=ExtResource("3_bnehe")]
+position = Vector2(108, 2)
