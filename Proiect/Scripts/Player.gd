@@ -5,33 +5,40 @@ const SPEED = 350.0
 const JUMP_VELOCITY = -700.0
 const THINK_TIME = 0.1
 const JUMP_THINK_TIME = 0.05
-const COYOTE_TIME = 0.00001
+const COYOTE_TIME = 0.13
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = 1600
 var jumped = true
-var coyote_timer = null  
+var coyote_timer  
 var can_jump = false
+var coyote_timer_started = false
+var is_jumping_animation = false
+@onready var animations = $AnimatedSprite2D
 
 func _ready():
     $Timer.one_shot = true
     $JumpTimer.one_shot = true
     coyote_timer = Timer.new()  # Create a new Timer
-    coyote_timer.one_shot = true
-    coyote_timer.wait_time = COYOTE_TIME
     add_child(coyote_timer)
+    coyote_timer.one_shot = true
 
 func _physics_process(delta):
+    print(can_jump)
+    print(coyote_timer.time_left)
     # Add the gravity.
     if (not is_on_floor()):
         velocity.y += gravity * delta
 
-    if(is_on_floor()):
+    if is_on_floor():
         can_jump = true
-        coyote_timer.stop()  			# Stop the timer if on the floor
-    else:								# Check if the coyote timer has finished
-        if coyote_timer.is_stopped():
-            coyote_timer.start()
+        coyote_timer_started = false
+    elif not is_on_floor() and coyote_timer.time_left == 0 and not coyote_timer_started:
+        coyote_timer.start(COYOTE_TIME)
+        coyote_timer_started = true
+            
+    if coyote_timer.time_left == 0 and not is_on_floor():
+        can_jump = false
+        
     
     if Input.is_action_just_pressed("jump") and can_jump:
         velocity.y = JUMP_VELOCITY
@@ -50,6 +57,29 @@ func _physics_process(delta):
     # Get the input direction and handle the movement/deceleration.
     # As good practice, you should replace UI actions with custom gameplay actions.
     var direction = Input.get_axis("move_left", "move_right")
+    
+    if direction > 0:
+        animations.flip_h = false
+    elif direction < 0:
+        animations.flip_h = true
+    
+    if not animations.is_playing() and is_jumping_animation:
+        is_jumping_animation = false
+    
+    if Input.is_action_just_pressed("jump"):
+        animations.play("jump_start")
+        is_jumping_animation = true
+    elif not is_on_floor() and not is_jumping_animation:
+        animations.play("jump_end")
+    elif is_on_floor():
+        if direction == 0:
+            animations.play("idle")
+            is_jumping_animation = false
+        else:
+            animations.play("running")
+            is_jumping_animation = false
+
+    
     if direction:
         velocity.x = direction * SPEED
     else:

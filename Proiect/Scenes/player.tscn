@@ -230,7 +230,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_84kem")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump_end",
 "speed": 5.0
 }, {
@@ -244,7 +244,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_v44ob")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump_start",
 "speed": 5.0
 }, {
@@ -333,5 +333,4 @@ z_index = 2
 position = Vector2(-2, -51)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_g38pp")
-animation = &"idle"
-frame_progress = 0.207853
+animation = &"jump_end"
