@@ -23,8 +23,6 @@ func _ready():
     coyote_timer.one_shot = true
 
 func _physics_process(delta):
-    print(can_jump)
-    print(coyote_timer.time_left)
     # Add the gravity.
     if (not is_on_floor()):
         velocity.y += gravity * delta

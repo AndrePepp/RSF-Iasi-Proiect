@@ -333,4 +333,6 @@ z_index = 2
 position = Vector2(-2, -51)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_g38pp")
-animation = &"jump_end"
+animation = &"jump_start"
+frame = 2
+frame_progress = 1.0
