@@ -2,15 +2,22 @@ extends CharacterBody2D
 
 
 const SPEED = 350.0
+const SHIFT_SPEED = 600.0
 const JUMP_VELOCITY = -700.0
 const THINK_TIME = 0.1
 const JUMP_THINK_TIME = 0.05
 const COYOTE_TIME = 0.13
+const IDLE_COOLDOWN = 3
 
 var gravity = 1600
 var jumped = true
+var acceleration = SPEED
+var running_text = "running"
 var coyote_timer  
+var idle_timer
+var is_idle = false
 var can_jump = false
+var idle_timer_started = false
 var coyote_timer_started = false
 var is_jumping_animation = false
 @onready var animations = $AnimatedSprite2D
@@ -18,14 +25,19 @@ var is_jumping_animation = false
 func _ready():
     $Timer.one_shot = true
     $JumpTimer.one_shot = true
-    coyote_timer = Timer.new()  # Create a new Timer
+    idle_timer = Timer.new()
+    coyote_timer = Timer.new()
+    add_child(idle_timer)
     add_child(coyote_timer)
+    idle_timer.one_shot = true
     coyote_timer.one_shot = true
 
 func _physics_process(delta):
     # Add the gravity.
     if (not is_on_floor()):
         velocity.y += gravity * delta
+
+
 
     if is_on_floor():
         can_jump = true
@@ -56,6 +68,14 @@ func _physics_process(delta):
     # As good practice, you should replace UI actions with custom gameplay actions.
     var direction = Input.get_axis("move_left", "move_right")
     
+    if Input.is_action_pressed("shift"):
+        acceleration = SHIFT_SPEED
+        running_text = "very_fast_running"
+    else:
+        acceleration = SPEED
+        running_text = "running"
+        
+    
     if direction > 0:
         animations.flip_h = false
     elif direction < 0:
@@ -64,6 +84,7 @@ func _physics_process(delta):
     if not animations.is_playing() and is_jumping_animation:
         is_jumping_animation = false
     
+
     if Input.is_action_just_pressed("jump"):
         animations.play("jump_start")
         is_jumping_animation = true
@@ -71,16 +92,30 @@ func _physics_process(delta):
         animations.play("jump_end")
     elif is_on_floor():
         if direction == 0:
-            animations.play("idle")
+            is_idle = true
             is_jumping_animation = false
         else:
-            animations.play("running")
+            is_idle = false
+            animations.play(running_text)
             is_jumping_animation = false
+            idle_timer_started = false
 
+    IdleAnimations()
+    
     
     if direction:
-        velocity.x = direction * SPEED
+        velocity.x = direction * acceleration
     else:
-        velocity.x = move_toward(velocity.x, 0, SPEED)
+        velocity.x = move_toward(velocity.x, 0, acceleration)
 
     move_and_slide()
+
+func IdleAnimations():
+ if is_idle and idle_timer_started == false :
+        animations.play("idle")
+        idle_timer.start(IDLE_COOLDOWN)
+        idle_timer_started = true
+   
+ if idle_timer.time_left == 0 and is_idle:
+        animations.play("idle2")
+        

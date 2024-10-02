@@ -215,7 +215,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle3",
-"speed": 8.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -333,6 +333,4 @@ z_index = 2
 position = Vector2(-2, -51)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_g38pp")
-animation = &"jump_start"
-frame = 2
-frame_progress = 1.0
+animation = &"idle2"

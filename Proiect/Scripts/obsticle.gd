@@ -17,7 +17,6 @@ func _process(_delta):
 
 
 func _on_area_2d_area_entered(_area):
- print("collided")
  is_colliding = true
 
 
