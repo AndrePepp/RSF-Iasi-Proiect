@@ -20,6 +20,7 @@ var can_jump = false
 var idle_timer_started = false
 var coyote_timer_started = false
 var is_jumping_animation = false
+var is_animation_choosed = false
 @onready var animations = $AnimatedSprite2D
 
 func _ready():
@@ -36,7 +37,6 @@ func _physics_process(delta):
     # Add the gravity.
     if (not is_on_floor()):
         velocity.y += gravity * delta
-
 
 
     if is_on_floor():
@@ -111,11 +111,16 @@ func _physics_process(delta):
     move_and_slide()
 
 func IdleAnimations():
- if is_idle and idle_timer_started == false :
+ if is_idle and not idle_timer_started:
         animations.play("idle")
         idle_timer.start(IDLE_COOLDOWN)
         idle_timer_started = true
+        is_animation_choosed = false
    
- if idle_timer.time_left == 0 and is_idle:
-        animations.play("idle2")
+ if idle_timer.time_left == 0 and is_idle and not is_animation_choosed:
+    is_animation_choosed = true
+    if (randi() % 2) :  
+      animations.play("idle2")
+    else:
+      animations.play("idle3")
         
