@@ -377,10 +377,5 @@ color = Color(0.280038, 0.495665, 1, 0.690196)
 energy = 0.7
 texture = ExtResource("8_gp8e1")
 
-[node name="Node" type="Node" parent="."]
-
-[node name="Key_collectable" parent="Node" instance=ExtResource("9_6pc0u")]
-position = Vector2(2066, 483)
-
-[node name="Key_collectable2" parent="Node" instance=ExtResource("9_6pc0u")]
+[node name="Key_collectable" parent="." instance=ExtResource("9_6pc0u")]
 position = Vector2(1711, 505)

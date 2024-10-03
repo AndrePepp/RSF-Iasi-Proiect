@@ -1,8 +1,9 @@
-[gd_scene load_steps=44 format=3 uid="uid://ddkyjaoyx5s75"]
+[gd_scene load_steps=45 format=3 uid="uid://ddkyjaoyx5s75"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_xl6f7"]
 [ext_resource type="PackedScene" uid="uid://bisf8c07pju6v" path="res://Scenes/e_thingy.tscn" id="3_bnehe"]
 [ext_resource type="Texture2D" uid="uid://bh2k6vbkxx22s" path="res://Assets/Cat Sprite Sheet.png" id="3_nffb5"]
+[ext_resource type="PackedScene" uid="uid://4n2apyab4p3b" path="res://Inventory/InvNodes/inventory_ui.tscn" id="4_w5t6f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pve8c"]
 size = Vector2(67, 63)
@@ -335,3 +336,11 @@ scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_g38pp")
 animation = &"idle3"
 frame_progress = 0.686694
+
+[node name="Inventory_UI" parent="." instance=ExtResource("4_w5t6f")]
+z_index = 2
+custom_minimum_size = Vector2(150, 128)
+offset_left = -225.0
+offset_top = -392.0
+offset_right = -57.0
+offset_bottom = -264.0

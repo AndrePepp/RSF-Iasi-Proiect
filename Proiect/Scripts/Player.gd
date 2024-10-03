@@ -22,8 +22,10 @@ var coyote_timer_started = false
 var is_jumping_animation = false
 var is_animation_choosed = false
 @onready var animations = $AnimatedSprite2D
+@export var inv: Inv
 
 func _ready():
+    inv = Inv.new()
     $Timer.one_shot = true
     $JumpTimer.one_shot = true
     idle_timer = Timer.new()
@@ -124,3 +126,8 @@ func IdleAnimations():
     else:
       animations.play("idle3")
         
+func collect(item):
+    inv.insert(item)
+
+func player():
+    pass
