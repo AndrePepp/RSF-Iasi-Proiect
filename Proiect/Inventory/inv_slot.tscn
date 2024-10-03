@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhm4ffaciwt86"]
+
+[ext_resource type="Texture2D" uid="uid://b3v12r328awur" path="res://Assets/14034202-pack_xl.webp" id="1_hicjl"]
+
+[node name="Inv_slot" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(48, 48)
+anchors_preset = -1
+anchor_right = 0.001
+anchor_bottom = 0.002
+offset_right = 46.848
+offset_bottom = 46.704
+scale = Vector2(0.05, 0.05)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0208333, 0.0208333)
+texture = ExtResource("1_hicjl")
+centered = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -24.0
+offset_bottom = -24.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Item_Display" type="Sprite2D" parent="CenterContainer/Panel"]
+
+[node name="Label" type="Label" parent="CenterContainer/Panel"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 13.0
+offset_right = 70.0
+offset_bottom = 53.0
+scale = Vector2(0.15, 0.15)
+text = "99"
+horizontal_alignment = 2
+vertical_alignment = 2
