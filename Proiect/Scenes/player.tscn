@@ -1,6 +1,7 @@
-[gd_scene load_steps=45 format=3 uid="uid://ddkyjaoyx5s75"]
+[gd_scene load_steps=46 format=3 uid="uid://ddkyjaoyx5s75"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_xl6f7"]
+[ext_resource type="Resource" uid="uid://betpn6074ittm" path="res://Inventory/playerInv.tres" id="2_xi40g"]
 [ext_resource type="PackedScene" uid="uid://bisf8c07pju6v" path="res://Scenes/e_thingy.tscn" id="3_bnehe"]
 [ext_resource type="Texture2D" uid="uid://bh2k6vbkxx22s" path="res://Assets/Cat Sprite Sheet.png" id="3_nffb5"]
 [ext_resource type="PackedScene" uid="uid://4n2apyab4p3b" path="res://Inventory/InvNodes/inventory_ui.tscn" id="4_w5t6f"]
@@ -310,6 +311,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_xl6f7")
+inv = ExtResource("2_xi40g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5.5, -2.5)

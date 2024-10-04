@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://b4qbys85da4qe"]
+
+[ext_resource type="Script" path="res://Scripts/speedboost.gd" id="1_iuuxl"]
+[ext_resource type="Texture2D" uid="uid://bh2k6vbkxx22s" path="res://Assets/Cat Sprite Sheet.png" id="2_2ir1i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xd8pq"]
+atlas = ExtResource("2_2ir1i")
+region = Rect2(0, 80, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu3bd"]
+atlas = ExtResource("2_2ir1i")
+region = Rect2(32, 80, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc61"]
+atlas = ExtResource("2_2ir1i")
+region = Rect2(64, 80, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6q52"]
+atlas = ExtResource("2_2ir1i")
+region = Rect2(96, 80, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yeo8b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xd8pq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu3bd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orc61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6q52")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tysih"]
+
+[node name="Speedboost" type="Area2D"]
+position = Vector2(1405, 5645)
+scale = Vector2(3, 3)
+script = ExtResource("1_iuuxl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yeo8b")
+
+[node name="CollisionShape2Dboost" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tysih")
