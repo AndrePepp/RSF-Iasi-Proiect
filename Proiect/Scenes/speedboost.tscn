@@ -51,3 +51,5 @@ sprite_frames = SubResource("SpriteFrames_yeo8b")
 
 [node name="CollisionShape2Dboost" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tysih")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

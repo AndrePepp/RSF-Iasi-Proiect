@@ -1,23 +1,25 @@
 extends Node2D
 
-var obsticleNode
-@export var item: InvItem
-@onready var player = $"."
+@onready var animation = $Sprite2D
+var is_colliding: bool = false
+var has_key: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	obsticleNode = get_node("/root/Game/Obsticle")
+   visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	player_near()
+    player_near()
 
 func player_near():
-	#if obsticleNode.is_colliding == true:
-#		visible = true
-#		if Input.is_action_just_pressed("Interact"):
-#			player.collect(item)
-#	else:
-#		visible = false
-	pass
+   if is_colliding:
+    visible = true
+   elif not is_colliding :
+    visible = false
+
+    if Input.is_action_just_pressed("Interact") and is_colliding:
+        animation.play("pressed")
+        
    

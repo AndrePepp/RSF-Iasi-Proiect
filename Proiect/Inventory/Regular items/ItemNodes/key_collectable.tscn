@@ -8,6 +8,7 @@
 radius = 62.9682
 
 [node name="Key_collectable" type="StaticBody2D"]
+z_index = 1
 script = ExtResource("1_403s6")
 item = ExtResource("2_u7h5y")
 

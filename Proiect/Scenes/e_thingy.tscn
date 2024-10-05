@@ -1,14 +1,42 @@
-[gd_scene load_steps=4 format=3 uid="uid://bisf8c07pju6v"]
+[gd_scene load_steps=7 format=3 uid="uid://bisf8c07pju6v"]
 
 [ext_resource type="Script" path="res://Scripts/e_thingy.gd" id="1_ihr40"]
-[ext_resource type="Texture2D" uid="uid://kq36t10dgcnv" path="res://Assets/e.png" id="2_3j6p6"]
-[ext_resource type="Resource" uid="uid://bbm4fc0fs26h6" path="res://Inventory/Regular items/Key_ig.tres" id="2_vlciy"]
+[ext_resource type="Texture2D" uid="uid://djr008n8hbqyl" path="res://Assets/Assets_2.png" id="2_abowm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6ymb"]
+atlas = ExtResource("2_abowm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tn7l"]
+atlas = ExtResource("2_abowm")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yasv3"]
+atlas = ExtResource("2_abowm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r4ytu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6ymb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tn7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yasv3")
+}],
+"loop": false,
+"name": &"pressed",
+"speed": 10.0
+}]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_ihr40")
-item = ExtResource("2_vlciy")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 2
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_3j6p6")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 3
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_r4ytu")
+animation = &"pressed"

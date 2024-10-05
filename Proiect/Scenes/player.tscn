@@ -328,8 +328,8 @@ position = Vector2(-1, -1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_08a5j")
 
-[node name="Node2D" parent="." instance=ExtResource("3_bnehe")]
-position = Vector2(108, 2)
+[node name="E" parent="." instance=ExtResource("3_bnehe")]
+position = Vector2(71, 2)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 2

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwcy3q0vk0h23"]
+
+[ext_resource type="Script" path="res://Scripts/obsticle.gd" id="1_f3yo4"]
+[ext_resource type="Texture2D" uid="uid://djr008n8hbqyl" path="res://Assets/Assets_2.png" id="2_vn7hy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_woygj"]
+radius = 141.057
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qgpcl"]
+radius = 81.0
+
+[node name="Node2D" type="AnimatableBody2D"]
+script = ExtResource("1_f3yo4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+texture = ExtResource("2_vn7hy")
+region_enabled = true
+region_rect = Rect2(48, 0, 32, 32)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_woygj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_qgpcl")
+one_way_collision = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

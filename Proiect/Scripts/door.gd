@@ -11,8 +11,7 @@ func _ready():
 func _process(_delta):
     if player:
         if Input.is_action_just_pressed("Interact") and player.e.is_colliding:
-            await get_tree().create_timer(0.1).timeout
-            queue_free()
+            open()
 
 
 
@@ -27,3 +26,6 @@ func _on_area_2d_body_exited(body):
      player = body
      player.e.is_colliding = false
     
+func open():
+    if player.e.has_key:
+        get_tree().change_scene_to_file("res://Scenes/level_2.tscn")
