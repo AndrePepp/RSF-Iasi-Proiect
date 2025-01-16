@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://cf58t3yeoyuyq"]
+
+[ext_resource type="Texture2D" uid="uid://d1dfchjw4b7m3" path="res://Assets/blank-white-background-xbsfzsltjksfompa.jpg" id="1_4ruct"]
+[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_k1nio"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e16i4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w3usw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0idm"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_k1nio")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+scale = Vector2(0.170064, 0.170064)
+physics_material_override = SubResource("PhysicsMaterial_e16i4")
+
+[node name="Area2D" type="Area2D" parent="RigidBody2D"]
+scale = Vector2(5.88015, 5.88015)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D"]
+scale = Vector2(30, 30)
+shape = SubResource("CircleShape2D_w3usw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+scale = Vector2(95, 55)
+shape = SubResource("RectangleShape2D_p0idm")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+texture = ExtResource("1_4ruct")
+
+[connection signal="body_entered" from="RigidBody2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="RigidBody2D/Area2D" to="." method="_on_area_2d_body_exited"]

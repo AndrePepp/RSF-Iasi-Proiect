@@ -378,7 +378,7 @@ texture = ExtResource("8_gp8e1")
 [node name="Obsticles" type="Node" parent="."]
 
 [node name="Obsticle" parent="Obsticles" instance=ExtResource("3_fq5kl")]
-position = Vector2(1136, 435)
+position = Vector2(1150, 430)
 
 [node name="Ball" parent="Obsticles" instance=ExtResource("10_7mdix")]
 position = Vector2(2683, 675)

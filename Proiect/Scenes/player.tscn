@@ -9,9 +9,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pve8c"]
 size = Vector2(67, 63)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_08a5j"]
-radius = 58.4209
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_2hdum"]
 atlas = ExtResource("3_nffb5")
 region = Rect2(0, 0, 32, 32)
@@ -309,6 +306,9 @@ animations = [{
 "speed": 16.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_08a5j"]
+radius = 58.4209
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_xl6f7")
 inv = ExtResource("2_xi40g")
@@ -322,12 +322,6 @@ wait_time = 0.3
 
 [node name="JumpTimer" type="Timer" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-1, -1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_08a5j")
-
 [node name="E" parent="." instance=ExtResource("3_bnehe")]
 position = Vector2(71, 2)
 
@@ -336,8 +330,8 @@ z_index = 2
 position = Vector2(-2, -51)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_g38pp")
-animation = &"idle3"
-frame_progress = 0.686694
+animation = &"very_fast_running"
+frame_progress = 0.739552
 
 [node name="Inventory_UI" parent="." instance=ExtResource("4_w5t6f")]
 z_index = 2
@@ -346,3 +340,9 @@ offset_left = -225.0
 offset_top = -392.0
 offset_right = -57.0
 offset_bottom = -264.0
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_08a5j")

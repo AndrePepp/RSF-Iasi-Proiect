@@ -7,7 +7,7 @@ const THINK_TIME = 0.1
 const JUMP_THINK_TIME = 0.05
 const COYOTE_TIME = 0.13
 const IDLE_COOLDOWN = 3
-const BOOST_TIME = 3
+const BOOST_TIME = 15
 const BOOST_SPEED = 1000
 
 var gravity = 1600
@@ -24,11 +24,13 @@ var coyote_timer_started = false
 var is_jumping_animation = false
 var is_animation_choosed = false
 var has_boost = false
+
+var lv_2 = false
 @onready var e = $E
 @onready var animations = $AnimatedSprite2D
 @export var inv: Inv
 
-func _ready():
+func _ready ():
     inv = Inv.new()
     $Timer.one_shot = true
     $JumpTimer.one_shot = true
@@ -42,8 +44,13 @@ func _ready():
     idle_timer.one_shot = true
     coyote_timer.one_shot = true
 
+
 func _physics_process(delta):
     # Add the gravity.
+    
+ if lv_2 == false:
+    if Input.is_action_just_pressed("reset"):
+        reset()
     
     if has_boost:
         activate_boost()
@@ -150,4 +157,15 @@ func activate_boost():
     has_boost = false
     boost_timer.start(BOOST_TIME)
 
+func reset():
+    get_tree().change_scene_to_file("res://Scenes/Main.tscn")
+    
+func level_2():
+    lv_2 = true
+    animations.play("idle")
+    position.y = position.y - 1
+    rotation = PI
+    animations.flip_h = !animations.flip_h
+    
+        
     
