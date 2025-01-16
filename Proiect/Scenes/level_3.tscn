@@ -195,5 +195,5 @@ shape = SubResource("RectangleShape2D_d1ora")
 [node name="Timer_Lv3" type="Timer" parent="Basket"]
 
 [node name="Node2D" parent="." instance=ExtResource("4_3yq67")]
-position = Vector2(2482, 899)
+position = Vector2(2369, 995)
 scale = Vector2(0.3, 0.3)

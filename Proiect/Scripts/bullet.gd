@@ -4,6 +4,7 @@ var gravity = 1600
 var is_touching_ground = false
 var player = null
 var is_e_pressed = false
+var ok = false
 
 @onready var sprite = $RigidBody2D/Sprite2D
 @onready var collision = $RigidBody2D/CollisionShape2D
@@ -21,8 +22,15 @@ func _process(delta):
         if Input.is_action_just_pressed("Interact") and player.e.is_colliding:
             is_e_pressed = !is_e_pressed
     
-    if is_e_pressed:
-        position = player.position + Vector2(20, -20)
+    if is_e_pressed and not ok:
+        position = player.position + Vector2(60, -100)
+        ok = true
+        sprite.position = Vector2(0,0)
+        area2d.position = Vector2(0,0)
+        collision.position = Vector2(0,0)
+        
+    if not is_e_pressed and ok:
+        okk()
 
 
 func _on_area_2d_body_entered(body):
@@ -36,3 +44,9 @@ func _on_area_2d_body_exited(body):
  if body.has_method("player"):
      player = body
      player.e.is_colliding = false
+    
+    
+func okk():
+    sprite.scale = Vector2(0.1, 0.1)
+    sprite.texture = load("res://Assets/da.png")
+    ok = true
